@@ -1,0 +1,37 @@
+---
+- hosts: all
+  pre_tasks:
+    - name: Update all packages if needed. [testing]
+      sudo: yes
+      yum: name=* state=latest update_cache=yes 
+
+  roles:
+  - docker
+
+  tasks:
+
+    - name: Install NTP
+      sudo: yes
+      yum: name=ntp state=installed
+
+    - name: Colocando NTP para executar
+      sudo: yes
+      service: name=ntpd state=started enabled=yes
+
+    # - name: Create jesuejunior user
+      # sudo: yes
+      # user:
+        # name: jesuejunior
+        # groups: sudo,admin
+        # state: present
+        # shell: /bin/zsh
+        # password: $6$rounds=656000$QnbQvZmEuGjLe8N.$.64w3z34iTGykjRXEuhbJTYXrZE6LH0S6PvaeUMU91oZxj4wBE8Ul.kuBzvxg2VC7IVwuEyzAFAQ6T/pHoxlo/
+
+    # - name: Create tools directory
+      # sudo: yes
+      # file:
+        # path: /tools
+        # state: directory
+        # mode: 0755
+        # owner: muxi
+        # group: users

@@ -1,0 +1,12 @@
+elk:
+  image: jesuejunior/elk
+  volumes:
+    - /logs:/data:rw
+  ports:
+    - "80:80"
+    - "28777:28777"
+    - "9200:9200"
+  expose:
+    - 28777
+    - 80
+    - 9200

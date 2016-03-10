@@ -1,0 +1,36 @@
+# Performance tunning
+---
+- hosts: all
+  tasks:
+    - name: S.O | Active pam_limits.so
+      sudo: yes
+      lineinfile:
+       dest: /etc/pam.d/common-session
+       state: present
+       regexp: "^session required  pam_limits.so"
+       insertbefore: "^# end of pam-auth-update config"
+       line: "session required  pam_limits.so"
+
+    - name: Generate security settings
+      sudo: yes
+      template:
+        src: ../templates/limits.conf.j2
+        dest: /etc/security/limits.d/tuning.conf
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Generate sysctl settings
+      sudo: yes
+      template:
+        src: ../templates/sysctl.conf.j2
+        dest: /etc/sysctl.d/42-tuning.conf
+        owner: root
+        group: root
+        mode: 0644
+      notify: Reload sysctl
+
+  handlers:
+    - name: Reload sysctl
+      shell: sysctl -p
+      notify: restart procps

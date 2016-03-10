@@ -1,0 +1,10 @@
+#Build entire environment
+---
+ - include: ../main.yml
+ - include: ../performance.yml
+ - include: ../docker.main.yml
+#  - include: mongodb.yml
+#  - include: memcached.yml
+#  - include: metrics.yml
+#  - include: elk.yml
+ - include: portal.yml
