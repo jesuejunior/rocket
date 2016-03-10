@@ -1,0 +1,25 @@
+---
+- name: Add specific key
+  apt_key: id={{docker_repo_key}} keyserver=keyserver.ubuntu.com state=present
+
+- name: Install https apt transport package
+  apt: pkg=apt-transport-https state=present update_cache=yes
+
+- name: Add docker repo
+  apt_repository: repo='deb {{ docker_repo }} docker main' state=present
+
+- name: Install lxc-docker package
+  apt: pkg={{ docker_apt_package }} state=present update_cache=yes
+
+# consider separate role here
+- name: Change ufw forward policy to ACCEPT
+  command: sed -i 's/DEFAULT_FORWARD_POLICY="DROP"/DEFAULT_FORWARD_POLICY="ACCEPT"/g' /etc/default/ufw
+  when: docker_listen_tcp == True
+
+- name: Reload ufw
+  command: ufw reload
+  when: docker_listen_tcp == True
+
+- name: Allow incoming tcp traffic on {{docker_listen_port}}
+  command: ufw allow {{docker_listen_port}}/tcp
+  when: docker_listen_tcp == True
