@@ -7,8 +7,23 @@
 
   roles:
   - docker
-
+  
   tasks:
+    - name: Install base libs
+      sudo: yes
+      yum:
+        name: "{{ item }}"
+        state: installed
+      with_items:
+        - python-devel
+        - python-pip
+        - python-pycurl
+    
+
+    - name: (pip) Installing docker-compose
+      pip:
+        name: docker-compose
+        state: present
 
     - name: Install NTP
       sudo: yes
@@ -35,3 +50,4 @@
         # mode: 0755
         # owner: muxi
         # group: users
+  

@@ -9,3 +9,8 @@ forks = 10
 ansible_ssh_user = root
 ansible_ssh_pass = #dev@muxi5
 
+[consul]
+10.4.2.96
+
+[swarm]
+10.4.2.95
