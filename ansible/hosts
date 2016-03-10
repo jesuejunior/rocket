@@ -1,0 +1,11 @@
+
+[all]
+10.4.2.79
+10.4.2.86
+10.4.2.90
+
+[all:vars]
+forks = 10
+ansible_ssh_user = root
+ansible_ssh_pass = #dev@muxi5
+
