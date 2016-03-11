@@ -72,7 +72,7 @@ develop-eggs
 
 # Data created by the unit tests
 test/unit/app-path/
-
+*.retry
 db.sqlite3
 static/collect/*
 rocket/settings_local.py
