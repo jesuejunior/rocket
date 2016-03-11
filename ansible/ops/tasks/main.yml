@@ -42,12 +42,12 @@
         # shell: /bin/zsh
         # password: $6$rounds=656000$QnbQvZmEuGjLe8N.$.64w3z34iTGykjRXEuhbJTYXrZE6LH0S6PvaeUMU91oZxj4wBE8Ul.kuBzvxg2VC7IVwuEyzAFAQ6T/pHoxlo/
 
-    # - name: Create tools directory
-      # sudo: yes
-      # file:
-        # path: /tools
-        # state: directory
-        # mode: 0755
+    - name: Creating tools directory
+      sudo: yes
+      file:
+        path: /tools
+        state: directory
+        mode: 0755
         # owner: muxi
-        # group: users
+        group: users
   
