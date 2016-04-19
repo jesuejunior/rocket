@@ -56,7 +56,10 @@ docs/_build/
 # PyBuilder
 target/
 *.py[co]
+
 *.swp
+
+#Backups
 *~
 
 # Packages
@@ -70,15 +73,20 @@ bin
 develop-eggs
 .installed.cfg
 
-# Data created by the unit tests
-test/unit/app-path/
-*.retry
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+
 db.sqlite3
 static/collect/*
-rocket/settings_local.py
-*.*.*.test*
+configmanager/settings_local.py
+
 cache/
 output/
 *.pid
 .idea/
 .DS_Store
+.vagrant/
