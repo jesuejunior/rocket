@@ -1,8 +1,8 @@
 ---
-- hosts: sentry
+- hosts: elk
   vars:
-    project: sentry
-    app_name: sentry
+    project: elk
+    app_name: elk
 
   tasks:
     - include: ../docker.compose.yml
