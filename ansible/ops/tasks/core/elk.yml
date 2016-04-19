@@ -1,0 +1,8 @@
+---
+- hosts: sentry
+  vars:
+    project: sentry
+    app_name: sentry
+
+  tasks:
+    - include: ../docker.compose.yml
