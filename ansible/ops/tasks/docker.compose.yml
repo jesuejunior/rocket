@@ -1,5 +1,5 @@
 - name: Create tools directory
-  sudo: yes
+  sudo: True
   file:
     path: /tools/{{ app_name }}
     state: directory
@@ -7,21 +7,21 @@
     #owner: muxi 
     group: users
 
-- name: Copy compose file for {{ app_name }}
+- name: Copy compose file for `{{ app_name }}`
   sudo: yes
   copy:
-    src: ../files/core/{{ app_name }}.deploy.yml
+    src: ../../files/core/{{ app_name }}.deploy.yml
 #    dest: /home/tools/{{ app_name }}.deploy.yml
     dest: /tools/{{ app_name }}/docker-compose.yml
     #owner: muxi 
     group: users
     mode: 0755
 
-- name: Copy file of variables
+- name: Copy `{{ app_name }}` variable file
   sudo: yes
   copy:
-    src: ../files/core/{{ env }}.env
-    dest: /tools/{{ env }}.env
+    src: ../../files/core/{{ app_name }}.env
+    dest: /tools/{{ app_name }}/{{ app_name }}.env
     #owner: muxi
     group: users
     mode: 0755

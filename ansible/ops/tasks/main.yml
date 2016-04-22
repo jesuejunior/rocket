@@ -18,9 +18,12 @@
         - python-devel
         - python-pip
         - python-pycurl
+        - vim
+        - htop
     
 
     - name: (pip) Installing docker-compose
+      sudo: yes
       pip:
         name: docker-compose
         state: present

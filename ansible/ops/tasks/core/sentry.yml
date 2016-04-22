@@ -1,8 +1,8 @@
- ---
- - hosts: sentry
-   vars:
-     env: hmg
-     app_name: sentry
+---
+- hosts: sentry
+  vars:
+    project: sentry
+    app_name: sentry
 
-   tasks:
-     - include: ../docker.compose.yml
+  tasks:
+    - include: ../docker.compose.yml
