@@ -18,9 +18,9 @@ services:
 
   elasticsearch:
     image: jesuejunior/elasticsearch
-    volumes:
-      - /elk/elasticsearch:/opt/elasticsearch:rw
-      - /elk/elasticsearch/logs:/var/log/elasticsearch:rw
+#    volumes:
+#       - /elk/elasticsearch/data:/opt/elasticsearch/data:rw
+#      - /elk/elasticsearch/logs:/opt/elasticsearch/logs:rw
     ports:
       - "9200:9200"
       - "9300:9300"

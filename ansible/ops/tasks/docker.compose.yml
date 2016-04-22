@@ -7,7 +7,7 @@
     #owner: muxi 
     group: users
 
-- name: Copy compose file for `{{ app_name }}`
+- name: Copy compose file for {{ app_name }}
   sudo: yes
   copy:
     src: ../../files/core/{{ app_name }}.deploy.yml
@@ -17,7 +17,7 @@
     group: users
     mode: 0755
 
-- name: Copy `{{ app_name }}` variable file
+- name: Copy {{ app_name }} variable file
   sudo: yes
   copy:
     src: ../../files/core/{{ app_name }}.env
