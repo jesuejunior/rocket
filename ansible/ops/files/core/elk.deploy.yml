@@ -2,10 +2,8 @@ version: '2'
 services:
   kibana:
     image: kibana:4.5
-#    volumes:
-#      - /elk/kibana:/opt/kibana:rw
     environment:
-      - "ELASTICSEARCH_URL=http://192.168.1.24:9200"
+      - "ELASTICSEARCH_URL=http://elasticsearch:9200"
     ports:
       - "5601:5601"
     links:
@@ -18,9 +16,9 @@ services:
 
   elasticsearch:
     image: jesuejunior/elasticsearch
-#    volumes:
-#       - /elk/elasticsearch/data:/opt/elasticsearch/data:rw
-#      - /elk/elasticsearch/logs:/opt/elasticsearch/logs:rw
+    volumes:
+       - /elk/elasticsearch/data:/opt/elasticsearch/data:Z
+       - /elk/elasticsearch/logs:/opt/elasticsearch/logs:Z
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -35,8 +33,12 @@ services:
     depends_on:
       - elasticsearch
     volumes:
-      - /elk/logstash:/etc/logstash:rw
+      - /elk/logstash:/etc/logstash:Z
     ports:
       - "28777:28777"
+      - "28778:28778"
+      - "28779:28779"
     expose:
       - 28777
+      - 28778
+      - 28779
