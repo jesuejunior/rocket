@@ -2,3 +2,4 @@ ansible==2.0.1.0
 Flask==0.10.1
 Flask-RESTful==0.3.5
 gunicorn==19.4.5
+docker-py==1.8.0
