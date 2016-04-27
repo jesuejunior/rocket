@@ -1,0 +1,59 @@
+{
+  "server": {
+    "host": "192.168.1.1",
+    "provider": "aws"
+  },
+  "services": {
+    "kibana": {
+      "image": "kibana:4.5",
+      "volumes": [
+        "/elk/kibana:/opt/kibana:rw"
+      ],
+      "environment": [
+        "ELASTICSEARCH_URL=http://elasticsearch:9200"
+      ],
+      "ports": [
+        "5601:5601"
+      ],
+      "links": [
+        "elasticsearch:elasticsearch"
+      ],
+      "depends_on": [
+        "elasticsearch",
+        "logstash"
+      ],
+      "expose": [
+        5601
+      ]
+    },
+    "elasticsearch": {
+      "image": "jesuejunior/elasticsearch",
+      "ports": [
+        "9200:9200",
+        "9300:9300"
+      ],
+      "expose": [
+        9200,
+        9300
+      ]
+    },
+    "logstash": {
+      "image": "jesuejunior/logstash",
+      "links": [
+        "elasticsearch:elasticsearch"
+      ],
+      "depends_on": [
+        "elasticsearch"
+      ],
+      "volumes": [
+        "/elk/logstash:/etc/logstash:rw"
+      ],
+      "ports": [
+        "28777:28777"
+      ],
+      "expose": [
+        28777
+      ]
+    }
+  }
+}
