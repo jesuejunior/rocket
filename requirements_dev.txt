@@ -1,1 +1,2 @@
 ansible-lint==2.4.0
+passlib==1.6.5
