@@ -20,3 +20,9 @@ Criando o primeiro usuário, precisa entrar no servidor(inicialmente).
 
 Agora é só seguir o step-by-step e ao fim você consiguirá acessar a interface.
 
+Generate password to user lib
+
+.. code-block:: python
+
+    $ python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.encrypt(getpass.getpass())"
+
