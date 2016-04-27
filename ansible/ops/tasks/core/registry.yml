@@ -1,0 +1,8 @@
+---
+- hosts: registry
+  vars:
+    project: registry
+    app_name: registry
+
+  tasks:
+    - include: ../docker.compose.yml

@@ -1,0 +1,8 @@
+version: '2'
+services:
+  sentry:
+    image: registry:2.4.0
+    env_file:
+      - registry.env
+    volumes:
+      - /files:/files:Z
