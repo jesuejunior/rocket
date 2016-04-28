@@ -1,0 +1,16 @@
+*.py    eol=lf
+*.txt   eol=lf
+*.yml   eol=lf
+*.md    eol=lf
+*.rst   eol=lf
+*.env   eol=lf
+*.json   eol=lf
+Vagrantfile   eol=lf
+*.j2    eol=lf
+.gitignore   eol=lf
+.dockerignore   eol=lf
+Dockerfile   eol=lf
+*.cfg   eol=lf
+*.ico   -text
+*.png   -text
+*.jpg   -text
