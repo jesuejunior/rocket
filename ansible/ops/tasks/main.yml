@@ -1,9 +1,9 @@
 ---
 - hosts: all
-  pre_tasks:
-    - name: Update all packages if needed. [testing]
-      sudo: yes
-      yum: name=* state=latest update_cache=yes 
+#  pre_tasks:
+#    - name: Update all packages if needed. [testing]
+#      sudo: yes
+#      yum: name=* state=latest update_cache=yes
 
   roles:
   - docker
@@ -26,6 +26,7 @@
       sudo: yes
       pip:
         name: docker-compose
+        version: 1.7.0
         state: present
 
     - name: Install NTP

@@ -2,6 +2,9 @@ version: '2'
 services:
   nginx:
     image: jesuejunior/nginx:apps
+    networks:
+      apps_network:
+        ipv4_address: 172.16.2.10
     env_file:
       - nginx.env
     volumes:
@@ -12,3 +15,15 @@ services:
       - 80
     external_links:
       - registry_registry_1:app
+#    extra_hosts:
+#      - "app:172.16.2.11"
+
+networks:
+  apps_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.2.0/24
+        ip_range: 172.16.2.0/24
+        gateway: 172.16.2.1

@@ -8,4 +8,11 @@ services:
       - /docker/registry/data:/tmp/registry-dev:Z
     expose:
       - 5000
+    networks:
+      nginx_apps_network:
+        ipv4_address: 172.16.2.11
 
+networks:
+  default:
+    external:
+      name: nginx_apps_network
