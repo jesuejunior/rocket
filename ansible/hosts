@@ -10,6 +10,9 @@
 [registry:children]
 aio
 
+[nginx:children]
+aio
+
 [elk:children]
 aio
 

@@ -1,0 +1,14 @@
+version: '2'
+services:
+  nginx:
+    image: jesuejunior/nginx:apps
+    env_file:
+      - nginx.env
+    volumes:
+      - /data/nginx/files:/app/files:Z
+    ports:
+      - "80:80"
+    expose:
+      - 80
+    external_links:
+      - registry_registry_1:app
