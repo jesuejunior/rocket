@@ -1,8 +1,0 @@
----
-- hosts: nginx
-  vars:
-    project: nginx
-    app_name: nginx
-
-  tasks:
-    - include: ../docker.compose.yml
