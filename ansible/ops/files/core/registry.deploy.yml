@@ -1,7 +1,7 @@
 version: '2'
 services:
   registry:
-    image: registry:2.4.0
+    image: registry:2
     env_file:
       - registry.env
     volumes:
@@ -9,10 +9,32 @@ services:
     expose:
       - 5000
     networks:
-      nginx_apps_network:
+      apps_network:
         ipv4_address: 172.16.2.11
+  nginx:
+      image: jesuejunior/nginx:apps
+      networks:
+        apps_network:
+          ipv4_address: 172.16.2.10
+      env_file:
+        - registry.env
+      volumes:
+        - /data/nginx/files:/app/files:Z
+      ports:
+        - "80:80"
+        - "443:443"
+      expose:
+        - 80
+        - 443
+      links:
+        - registry:app
 
 networks:
-  default:
-    external:
-      name: nginx_apps_network
+  apps_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.2.0/24
+        ip_range: 172.16.2.0/24
+        gateway: 172.16.2.1
