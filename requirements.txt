@@ -4,4 +4,5 @@ Flask-RESTful==0.3.5
 gunicorn==19.4.5
 docker-py==1.8.0
 Alchemytools==0.5
+passlib==1.6.5
 sqlalchemy-utils==0.32.5
