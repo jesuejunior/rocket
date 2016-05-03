@@ -8,7 +8,6 @@ from engine.models import Model
 class Server(Model):
 
 	"""
-
 	"""
 	__tablename__ = 'server'
 

@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.schema import MetaData
 from sqlalchemy_utils import database_exists, create_database
 
-from rocket.settings import TEST, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
+from rocket import TEST, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
 
 DEFAULT_DB_TEST_PATH = ''
 
