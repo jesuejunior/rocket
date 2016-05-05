@@ -5,7 +5,7 @@
 192.168.1.24 ansible_ssh_user=jjunior  ansible_ssh_pass=!Mamute22
 
 [sentry:children]
-#10.10.25.32 #SENTRY
+aio
 
 [registry:children]
 aio
