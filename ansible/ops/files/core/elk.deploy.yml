@@ -35,10 +35,12 @@ services:
     volumes:
       - /elk/logstash:/etc/logstash:Z
     ports:
+      - "28776:28776"
       - "28777:28777"
       - "28778:28778"
       - "28779:28779"
     expose:
+      - 28776
       - 28777
       - 28778
       - 28779
