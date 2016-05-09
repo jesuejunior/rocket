@@ -1,6 +1,7 @@
 # encoding: utf-8
+from flask.testsuite.config import SECRET_KEY
 from sqlalchemy import Column, Integer, String
-from sqlalchemy_utils import IPAddressType, PasswordType
+from sqlalchemy_utils import IPAddressType, PasswordType, EncryptedType
 
 from engine.models import Model
 
@@ -23,5 +24,5 @@ class Server(Model):
 			'md5_crypt'
 		],
 		deprecated=['md5_crypt']
-	))
-	private_key = Column()
+	), nullable=True)
+	private_key = Column(EncryptedType(String, SECRET_KEY), nullable=True)

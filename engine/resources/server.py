@@ -1,7 +1,7 @@
 # encoding: utf-8
 # encoding: utf-8
 from alchemytools.context import managed
-from flask import request
+from flask import request, jsonify
 from flask_restful import Resource
 
 from engine.models import Session
@@ -13,13 +13,12 @@ class ServerResource(Resource):
 		with managed(Session) as session:
 			server = session.query(Server).get(id)
 
-		return {'data': server}
+		return jsonify({'data': server}), 200
 
 	def post(self):
 		data = request.get_json(force=True)
 		with managed(Session) as session:
-			server = Server()
+			server = Server(**data)
 			session.add(server)
-		print(data)
-		return True
+		return jsonify({'data': server}), 200
 
