@@ -17,8 +17,8 @@ services:
   elasticsearch:
     image: jesuejunior/elasticsearch
     volumes:
-       - /elk/elasticsearch/data:/opt/elasticsearch/data:Z
-       - /elk/elasticsearch/logs:/opt/elasticsearch/logs:Z
+       - /opt/elk/elasticsearch/data:/opt/elasticsearch/data:Z
+       - /opt/elk/elasticsearch/logs:/opt/elasticsearch/logs:Z
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -33,7 +33,7 @@ services:
     depends_on:
       - elasticsearch
     volumes:
-      - /elk/logstash:/etc/logstash:Z
+      - /opt/elk/logstash:/etc/logstash:Z
     ports:
       - "28776:28776"
       - "28777:28777"
