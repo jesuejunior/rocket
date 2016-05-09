@@ -11,6 +11,7 @@ from engine.resources.server import ServerResource
 app = Flask(__name__)
 app.config.from_object(__name__)
 
+
 api = Api(app)
 
 # Deploy endpoints
@@ -20,7 +21,7 @@ api.add_resource(DeployResource, '/deploy/new',)
 api.add_resource(ContainerResource, '/container/all',)
 
 # Server endpoints
-api.add_resource(ServerResource, '/server/<int:id>')
+api.add_resource(ServerResource, '/server', '/server/<int:id>')
 
 
 
