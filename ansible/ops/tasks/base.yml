@@ -11,7 +11,7 @@
   - docker
 
   tasks:
-    - name: Install base libs
+    - name: Installing base libs
       become: yes
       yum:
         name: "{{ item }}"
@@ -23,7 +23,6 @@
         - python-pycurl
         - vim
         - htop
-
 
     - name: (pip) Installing docker-compose
       become: yes
@@ -47,7 +46,7 @@
         groups: wheel,adm,docker
         state: present
         shell: /bin/zsh
-        password: $6$rounds=656000$hj836.YOSQ29mLkJ$4kPJs.GePhCLCLRsWCMTVC/mPYfozg4fLrN2MQ7diD82WjufI2xFi5ZYzqBkrNAWB0M25hhtDQ/avQnwKOYR60
+        password: $6$rounds=656000$W0Mlifk9FN2zui8O$YPYDz13b1VorlyjaBdvMpN1dp.YrcoJOzFgugHbiVrh9X4dvubV70O3LM.yOS6hmmVJziXJUBuxft72RO9ftD1
 
     - name: Create tools directory
       become: yes
@@ -62,10 +61,11 @@
       become: yes
       copy:
         src: ../files/comlurb.py
-        dest: /home/rocket/comlurb.py
+        dest: /home/rocket/tools/comlurb.py
         owner: rocket
         group: users
         mode: 0755
+
     #FIX-ME: disabled temporarily
 #    - name: Login to registry Docker Hub
 #      command: docker login --email="{{ registry_mail }}" --password="{{ registry_pass }}" --username="{{ registry_user }}"
