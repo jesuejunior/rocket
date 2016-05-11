@@ -1,40 +1,39 @@
 - name: Create tools directory
-  sudo: True
+  become: True
   file:
-    path: /tools/{{ app_name }}
+    path: /home/rocket/tools/{{ app_name }}
     state: directory
     mode: 0755
-    #owner: muxi 
+    owner: rocket 
     group: users
 
 - name: Copy compose file for {{ app_name }}
-  sudo: yes
+  become: yes
   copy:
     src: ../../files/core/{{ app_name }}.deploy.yml
-#    dest: /home/tools/{{ app_name }}.deploy.yml
-    dest: /tools/{{ app_name }}/docker-compose.yml
-    #owner: muxi 
+    dest: /home/rocket/tools/{{ app_name }}/docker-compose.yml
+    owner: rocket
     group: users
     mode: 0755
 
 - name: Copy {{ app_name }} variable file
-  sudo: yes
+  become: yes
   copy:
     src: ../../files/core/{{ app_name }}.env
-    dest: /tools/{{ app_name }}/{{ app_name }}.env
-    #owner: muxi
+    dest: /home/rocket/tools/{{ app_name }}/{{ app_name }}.env
+    owner: rocket
     group: users
     mode: 0755
 
 - name: Run docker compose PULL for check the new image
-  sudo: yes
-  command: docker-compose pull  chdir=/tools/{{ app_name }}
+  become: yes
+  command: docker-compose pull  chdir=/home/rocket/tools/{{ app_name }}
 
 - name: run docker compose UP
-  sudo: yes
-  command: docker-compose  --project-name="{{ project }}" up -d  chdir=/tools/{{ app_name }}
+  become: yes
+  command: docker-compose  --project-name="{{ project }}" up -d  chdir=/home/rocket/tools/{{ app_name }}
 
 
 #- name: Executing comlurb.py
-#  sudo: yes
-#  command: python comlurb.py {{ app_name }}/docker-compose.yml chdir=/tools
+#  become: yes
+#  command: python comlurb.py {{ app_name }}/docker-compose.yml chdir=/home/rocket/tools
