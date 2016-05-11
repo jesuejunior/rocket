@@ -1,0 +1,72 @@
+---
+- hosts: all
+  pre_tasks:
+    - name: Update all packages if needed. [testing]
+      become: yes
+      yum: name=* state=latest update_cache=yes
+  vars_files:
+    - ../vars/main.yml
+
+  roles:
+  - docker
+
+  tasks:
+    - name: Install base libs
+      become: yes
+      yum:
+        name: "{{ item }}"
+        state: installed
+      with_items:
+        - zsh
+        - python-devel
+        - python-pip
+        - python-pycurl
+        - vim
+        - htop
+
+
+    - name: (pip) Installing docker-compose
+      become: yes
+      pip:
+        name: docker-compose
+        version: 1.7.0
+        state: present
+
+    - name: Install NTP
+      become: yes
+      yum: name=ntp state=installed
+
+    - name: Colocando NTP para executar
+      become: yes
+      service: name=ntpd state=started enabled=yes
+
+    - name: Creating rocket user
+      become: yes
+      user:
+        name: rocket
+        groups: wheel,adm,docker
+        state: present
+        shell: /bin/zsh
+        password: $6$rounds=656000$hj836.YOSQ29mLkJ$4kPJs.GePhCLCLRsWCMTVC/mPYfozg4fLrN2MQ7diD82WjufI2xFi5ZYzqBkrNAWB0M25hhtDQ/avQnwKOYR60
+
+    - name: Create tools directory
+      become: yes
+      file:
+        path: /home/rocket/tools
+        state: directory
+        mode: 0755
+        owner: rocket
+        group: users
+
+    - name: Copy comlurb.py
+      become: yes
+      copy:
+        src: ../files/comlurb.py
+        dest: /home/rocket/comlurb.py
+        owner: rocket
+        group: users
+        mode: 0755
+    #FIX-ME: disabled temporarily
+#    - name: Login to registry Docker Hub
+#      command: docker login --email="{{ registry_mail }}" --password="{{ registry_pass }}" --username="{{ registry_user }}"
+
