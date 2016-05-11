@@ -25,14 +25,23 @@
 - name: Docker systemd default config file
   become: yes
   template: src=docker-sysconfig.j2 dest=/etc/sysconfig/docker
+  register: sysconfig_file
   when: systemd_check.stat.exists == true
-  notify: 
+  notify:
     - Restart Docker
   
 - name: Docker systemd file
   become: yes
   template: src=docker-service.j2 dest=/lib/systemd/system/docker.service backup=yes
+  register: service_file
   when: systemd_check.stat.exists == true
-  notify: 
+  notify:
     - Restart Docker
 
+  - name: reload systemd
+    become: yes
+    shell: systemctl daemon-reload
+#    when: service_file.changed or sysconfig_file.changed
+    notify:
+    - Restart Docker
+  - meta: flush_handlers
