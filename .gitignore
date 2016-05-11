@@ -84,6 +84,7 @@ db.sqlite3
 static/collect/*
 configmanager/settings_local.py
 
+keys/
 cache/
 output/
 *.pid
