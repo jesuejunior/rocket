@@ -1,11 +1,12 @@
 version: '2'
 services:
   registry:
-    image: registry:2
+    image: registry:2.4
     env_file:
       - registry.env
     volumes:
-      - /docker/registry/data:/tmp/registry-dev:Z
+      - /opt/registry/tmp:/tmp/registry-dev:Z
+      - /opt/registry/lib:/var/lib/registry:Z
     expose:
       - 5000
     networks:
@@ -19,7 +20,7 @@ services:
       env_file:
         - registry.env
       volumes:
-        - /data/nginx/files:/app/files:Z
+        - /opt/nginx/files:/app/files:Z
       ports:
         - "80:80"
         - "443:443"

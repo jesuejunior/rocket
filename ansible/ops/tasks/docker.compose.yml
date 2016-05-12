@@ -1,11 +1,3 @@
-- name: Create tools directory
-  become: True
-  file:
-    path: /home/rocket/tools/{{ app_name }}
-    state: directory
-    mode: 0755
-    owner: rocket 
-    group: users
 
 - name: Copy compose file for {{ app_name }}
   become: yes
@@ -25,11 +17,11 @@
     group: users
     mode: 0755
 
-- name: Run docker compose PULL for check the new image
+- name: Running docker compose PULL for check the new image
   become: yes
   command: docker-compose pull  chdir=/home/rocket/tools/{{ app_name }}
 
-- name: run docker compose UP
+- name: Running docker compose UP
   become: yes
   command: docker-compose  --project-name="{{ project }}" up -d  chdir=/home/rocket/tools/{{ app_name }}
 
