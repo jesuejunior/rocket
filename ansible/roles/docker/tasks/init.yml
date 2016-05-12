@@ -38,10 +38,11 @@
   notify:
     - Restart Docker
 
-  - name: reload systemd
-    become: yes
-    shell: systemctl daemon-reload
-#    when: service_file.changed or sysconfig_file.changed
-    notify:
-    - Restart Docker
-  - meta: flush_handlers
+- name: reload systemd
+  become: yes
+  shell: systemctl daemon-reload
+  when: service_file.changed or sysconfig_file.changed
+  notify:
+  - Restart Docker
+
+- meta: flush_handlers
