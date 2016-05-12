@@ -18,11 +18,17 @@ class Server(Model):
 	provider = Column(String(40))
 	ip = Column(IPAddressType, unique=True)
 	username = Column(String(155), nullable=False)
-	password = Column(PasswordType(
-		schemes=[
-			'pbkdf2_sha512',
-			'md5_crypt'
-		],
-		deprecated=['md5_crypt']
-	), nullable=True)
+	password = Column(EncryptedType(String, SECRET_KEY), nullable=True)
 	private_key = Column(EncryptedType(String, SECRET_KEY), nullable=True)
+
+	@property
+	def serialize(self):
+		return {'id': self.id,
+				'name': self.name,
+				'so': self.so,
+				'provider': self.provider,
+				'ip': str(self.ip),
+				'username': self.username,
+				'password': self.password,
+				'private_key': self.private_key
+				}

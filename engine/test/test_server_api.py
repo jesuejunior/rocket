@@ -32,7 +32,7 @@ class ServerTest(unittest.TestCase):
 			session.add(server)
 
 	def tearDown(self):
-		Metadata.drop_all()
+		# Metadata.drop_all()
 		print("Finish up")
 
 	def test_create_new_server(self):

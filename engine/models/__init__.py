@@ -22,4 +22,4 @@ if not database_exists(engine.url):
 
 Metadata = MetaData(bind=engine)
 Model = declarative_base(metadata=Metadata)
-Session = sessionmaker(bind=engine, expire_on_commit=True)
+Session = sessionmaker(bind=engine, expire_on_commit=False)
