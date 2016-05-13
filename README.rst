@@ -16,11 +16,11 @@ Criando o primeiro usuário, precisa entrar no servidor(inicialmente).
 
 .. code-block:: shell
 
-    $ cd /tools && sudo docker-compose run sentry upgrade
+    $ cd /home/rocket/tools && sudo docker-compose run sentry upgrade
 
 Agora é só seguir o step-by-step e ao fim você consiguirá acessar a interface.
 
-Generate password to user lib
+Generate password to user
 
 .. code-block:: python
 
