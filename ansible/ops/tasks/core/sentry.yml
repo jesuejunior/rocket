@@ -6,3 +6,13 @@
 
   tasks:
     - include: ../docker.compose.yml
+    #TODO: Fix it with relation permissions
+    - name: Set permission for group in /opt/sentry
+      become: yes
+      file:
+        path: /opt/sentry
+        state: directory
+        recurse: yes
+        mode: 0777
+        owner: rocket
+        group: docker

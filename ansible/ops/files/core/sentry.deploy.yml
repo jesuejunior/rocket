@@ -5,7 +5,7 @@ services:
         env_file:
             - sentry.env
         volumes:
-            - /opt/sentry/files:/var/lib/sentry/files:rw
+            - /opt/sentry/files:/var/lib/sentry/files:Z
         links:
             - redis:redis
             - postgres:postgres
@@ -18,13 +18,12 @@ services:
             - "9000:9000"
         expose:
             - 9000
-
     worker:
         image: sentry:8.4
         env_file:
             - sentry.env
         volumes:
-            - /opt/sentry/files:/var/lib/sentry/files:rw
+            - /opt/sentry/files:/var/lib/sentry/files:Z
         links:
             - redis:redis
             - postgres:postgres
@@ -32,13 +31,12 @@ services:
             - postgres
             - redis
         command: celery worker
-
     beat:
         image: sentry:8.4
         env_file:
             - sentry.env
         volumes:
-            - /opt/sentry/files:/var/lib/sentry/files:rw
+            - /opt/sentry/files:/var/lib/sentry/files:Z
         links:
             - redis:redis
             - postgres:postgres
@@ -46,12 +44,10 @@ services:
             - postgres
             - redis
         command: celery beat
-
     redis:
         image: redis:3.0.7-alpine
         #ports:
         #    - "6379:6379"
-
     postgres:
         image: postgres:9.5.2
         env_file:
@@ -59,5 +55,5 @@ services:
         ports:
             - "5432:5432"
         volumes:
-            - /opt/sentry/postgresql/data:/var/lib/postgresql/data:rw
+            - /opt/sentry/postgresql/data:/var/lib/postgresql/data:Z
 
