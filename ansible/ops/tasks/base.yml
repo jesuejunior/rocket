@@ -27,9 +27,12 @@
     - name: (pip) Installing docker-compose
       become: yes
       pip:
-        name: docker-compose
-        version: 1.7.0
-        state: present
+        name: "{{ item }}"
+#        version: 1.7.1
+        state: latest
+      with_items:
+        - docker-compose
+        - backports.ssl-match-hostname
 
     - name: Install NTP
       become: yes
@@ -55,7 +58,11 @@
         state: directory
         mode: 0755
         owner: rocket
-        group: users
+        group: docker
+
+#    - name: Set permission for group in /opt
+#      become: yes
+#      command: chcon -Rt svirt_sandbox_file_t /opt
 
     - name: Copy comlurb.py
       become: yes
@@ -63,7 +70,7 @@
         src: ../files/comlurb.py
         dest: /home/rocket/tools/comlurb.py
         owner: rocket
-        group: users
+        group: docker
         mode: 0755
 
     #FIX-ME: disabled temporarily
