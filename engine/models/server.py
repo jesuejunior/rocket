@@ -1,5 +1,5 @@
 # encoding: utf-8
-from flask.testsuite.config import SECRET_KEY
+from rocket import SECRET_KEY
 from sqlalchemy import Column, Integer, String
 from sqlalchemy_utils import IPAddressType, EncryptedType
 
@@ -24,12 +24,14 @@ class Server(Model):
 
 	@property
 	def serialize(self):
-		return {'id': self.id,
-				'name': self.name,
-				'so': self.so,
-				'provider': self.provider,
-				'ip': str(self.ip),
-				'username': self.username,
-				'password': self.password,
-				'private_key': self.private_key
-				}
+		return {
+			'id': self.id,
+			'name': self.name,
+			'so': self.so,
+			'provider': self.provider,
+			'ip': str(self.ip),
+			'fqdn': self.fqdn,
+			'username': self.username,
+			'password': self.password,
+			'private_key': self.private_key
+		}
