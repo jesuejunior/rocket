@@ -32,7 +32,7 @@ class ServerTest(unittest.TestCase):
 			session.add(server)
 
 	def tearDown(self):
-		# Metadata.drop_all()
+		Metadata.drop_all()
 		print("Finish up")
 
 	def test_create_new_server(self):
@@ -51,5 +51,6 @@ class ServerTest(unittest.TestCase):
 		assert srv.data == data
 
 	def test_get_server_by_id(self):
-		rv = self.app.get('/server/1')
-		assert '123' == rv.data
+		req = self.app.get('/server/1')
+		result = json.loads(req.data)
+		assert 1 == result.get('id')

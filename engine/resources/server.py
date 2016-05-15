@@ -12,7 +12,7 @@ class ServerResource(Resource):
 	def get(self, id):
 		with managed(Session) as session:
 			server = session.query(Server).get(id)
-		return jsonify(data=server.serialize)
+		return jsonify(server.serialize)
 
 	def post(self):
 		data = request.get_json(force=True)
