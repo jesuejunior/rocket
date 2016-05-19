@@ -6,7 +6,8 @@
       yum: name=* state=latest update_cache=yes
   vars_files:
     - ../vars/main.yml
-
+  vars:
+    - has_private_registry: true
   roles:
   - docker
 
@@ -60,10 +61,6 @@
         owner: rocket
         group: docker
 
-#    - name: Set permission for group in /opt
-#      become: yes
-#      command: chcon -Rt svirt_sandbox_file_t /opt
-
     - name: Copy comlurb.py
       become: yes
       copy:
@@ -72,6 +69,19 @@
         owner: rocket
         group: docker
         mode: 0755
+
+    - name: Coping registry certs files (ca.crt) -> {{ ansible_hostname }}
+      become: yes
+      copy:
+        src: ../../files/certs/domain.crt
+        dest: /etc/pki/ca-trust/source/anchors/ca.crt
+        mode: 0755
+      when: has_private_registry
+
+    - name: Updating trusted CA
+      become: yes
+      command: update-ca-trust
+      when: has_private_registry
 
     #FIX-ME: disabled temporarily
 #    - name: Login to registry Docker Hub
