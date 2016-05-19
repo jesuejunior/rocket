@@ -15,4 +15,4 @@
         recurse: yes
         mode: 0777
         owner: rocket
-        group: users
+        group: docker
