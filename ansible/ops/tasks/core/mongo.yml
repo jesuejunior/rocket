@@ -1,0 +1,47 @@
+---
+- hosts: shared
+  vars:
+    project: shared
+    app_name: mongo
+
+  tasks:
+    #FIX-ME: It's a bad smell, it'll need more time to investigate on centos permissions
+    - name: Set permission for group in /opt/mongo
+      become: yes
+      file:
+        path: /opt/mongo
+        state: directory
+        recurse: yes
+        mode: 0755
+        owner: rocket
+        group: docker
+#    - name: Changing permission to store mongo data
+#      become: yes
+#      command: chcon -Rt svirt_sandbox_file_t /opt/mongo
+    - include: ../docker.compose.yml
+
+    - name: Copying mongo repo file
+      become: yes
+      copy:
+        src: ../../files/mongodb-org-3.2.repo
+        dest: /etc/yum.repos.d/mongodb-org-3.2.repo
+        owner: rocket
+        group: docker
+        mode: 0755
+      when: ansible_os_family == "RedHat"
+
+    - name: Intalling mongo shell
+      become: yes
+      yum:
+        name: "mongodb-org-shell"
+        state: installed
+      when: ansible_os_family == "RedHat"
+
+    - name: Copying script to create the users in mongo
+      become: yes
+      copy:
+        src: ../../files/{{ project }}/mongo_users.js
+        dest: /home/rocket/tools/mongo_users.js
+        owner: rocket
+        group: docker
+        mode: 0755
