@@ -1,0 +1,7 @@
+---
+- hosts: shared
+  vars:
+    project: shared
+    app_name: merchant
+  tasks:
+    - include: ../docker.compose.yml
