@@ -1,0 +1,15 @@
+version: '2'
+services:
+  mongo:
+    image: mongo:3.2.6
+    mem_limit: 512M
+    privileged: true
+    env_file:
+      - mongo.env
+    volumes:
+      - /opt/mongo:/data/db:z
+    expose:
+      - 27017
+    ports:
+      - "27017:27017"
+    command: --storageEngine wiredTiger --bind_ip 0.0.0.0 --setParameter authenticationMechanisms=MONGODB-CR --auth
