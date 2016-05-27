@@ -34,8 +34,20 @@ Generate password to user a own user like a Rocket User created by default in *b
 Self-signed Certificate
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Generating self-signed TLS certificate for *NGINX8 and/or *Private Docker Registry*
+Generating self-signed TLS certificate for *NGINX* and/or *Private Docker Registry*
 
 .. code-block:: shell
 
     $ mkdir -p certs && openssl req -newkey rsa:4096 -nodes -sha256 -keyout certs/domain.key -x509 -days 365 -out certs/domain.crt
+
+Copiando o certificado no CentOS 7
+
+.. code-block:: shell
+
+    $ sudo cp ops/files/certs/domain.crt /etc/pki/ca-trust/source/anchors/ca.crt
+
+Fazendo o certificado ser reconhecido.
+
+.. code-block:: shell
+
+    $ sudo update-ca-trust
