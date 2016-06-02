@@ -1,6 +1,0 @@
----
- - include: base.yml
- # TODO: It's need to be moved to another place and be parameter
- - include: core/registry.yml
- - include: core/elk.yml
- - include: core/sentry.yml
