@@ -18,6 +18,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider "virtualbox" do |vb|
      vb.memory = "512"
+     vb.name = "rocket"
    end
 
   config.vm.provision "shell", inline: <<-SHELL
