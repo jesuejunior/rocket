@@ -1,13 +1,15 @@
 # encoding: utf-8
 
-from flask import request
 from flask_restful import Resource
 from docker import Client
 
+from rocket.settings import api
 
+
+@api.resource('/containers')
 class ContainerResource(Resource):
 
-	def get(self):
+	def get(self, id):
 		cli = Client(base_url='tcp://192.168.1.105:2375')
-		c = cli.containers()
-		return {'containers': c}
+		c = None
+		return {'container': c}
