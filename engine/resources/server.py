@@ -1,14 +1,17 @@
 # encoding: utf-8
+from IPy import IP
 from alchemytools.context import managed
 from flask import request, jsonify, make_response
 from flask_restful import Resource
 from sqlalchemy import exists
-from IPy import IP
-from toolbox.flask_headers import add_headers
+
 from engine.models import Session
 from engine.models.server import Server
+from rocket.settings import api, api_version
+from toolbox.flask_headers import add_headers
 
-
+#TODO: Remove queries from view/endpoint
+@api.resource('/{0}/servers'.format(api_version), '/{0}/servers/<int:id>'.format(api_version))
 class ServerResource(Resource):
 	@add_headers({'ok': True})
 	def get(self, id=None):
