@@ -1,3 +1,4 @@
+#FIXME: Move this configuration to settings
 import os
 
 SECRET_KEY = 'Fai8/pT1mbXMO62Papz9IdyznrIBuKBzaC2+5uvdxvaX3r2U8tFz/w=='
