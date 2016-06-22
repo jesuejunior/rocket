@@ -5,7 +5,7 @@ from flask_restful import Api
 
 from engine.resources.container import ContainerResource
 from engine.resources.deploy import DeployResource
-from engine.resources.server import ServerResource
+from engine.resources.node import NodeResource
 
 
 app = Flask(__name__)
