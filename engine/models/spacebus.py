@@ -11,6 +11,6 @@ class Spacebus(Model):
     """
     __tablename__ = 'spacebus'
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(40))
     container = relationship("Ccontainer", secundary='spacebus_has_container', backref="spacebuses")

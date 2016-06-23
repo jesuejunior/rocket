@@ -11,7 +11,7 @@ class Node(Model):
     """
     __tablename__ = 'node'
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(155), nullable=False)
     so = Column(String(40))
     provider = Column(String(40))

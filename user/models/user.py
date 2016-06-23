@@ -11,7 +11,7 @@ class User(Model):
 	"""
 	__tablename__ = 'user'
 
-	id = Column(Integer, primary=True)
+	id = Column(Integer, primary=True, autoincrement=True)
 	first_name = Column(String)
 	last_name = Column(String)
 	email = Column(String, unique=True)
