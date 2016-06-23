@@ -1,9 +1,8 @@
 # encoding: utf-8
-from rocket import SECRET_KEY
 from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy_utils import IPAddressType, EncryptedType
 
-from engine.models import Model
+from rocket.settings import Model, SECRET_KEY
 
 
 class Node(Model):

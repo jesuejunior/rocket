@@ -5,9 +5,9 @@ from flask import request, jsonify, make_response
 from flask_restful import Resource
 from sqlalchemy import exists
 
-from engine.models import Session
+from rocket.settings import Session
 from engine.models.node import Node
-from rocket.settings import api, api_version
+from rocket import api_version, api
 from toolbox.flask_headers import add_headers
 
 #TODO: Remove queries from view/endpoint

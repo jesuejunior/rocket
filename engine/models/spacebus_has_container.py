@@ -1,7 +1,7 @@
 # encoding: utf-8
 from sqlalchemy import Column, Integer, ForeignKey
 
-from engine.models import Model
+from rocket.settings import Model
 
 
 class SpacebusHasContainer(Model):

@@ -1,12 +1,11 @@
-#FIXME: Move this configuration to settings
-import os
+# encoding: utf-8
+from flask import Flask
+from flask_restful import Api
 
-SECRET_KEY = 'Fai8/pT1mbXMO62Papz9IdyznrIBuKBzaC2+5uvdxvaX3r2U8tFz/w=='
+app = Flask(__name__)
+app.config.from_object(__name__)
 
-DB_USER = os.environ.get('DB_USER', 'rocket')
-DB_PASSWORD = os.environ.get('DB_PASSWORD', 'rocket')
-DB_HOST = os.environ.get('DB_HOST', '192.168.99.100')
-DB_PORT = os.environ.get('DB_PORT', 5432)
-DB_NAME = os.environ.get('DB_NAME', 'rocket')
 
-TEST = os.environ.get('TEST', False)
+api = Api(app)
+
+api_version = 'v1'

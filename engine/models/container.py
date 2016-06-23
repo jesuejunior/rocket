@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy_utils import JSONType
 
-from engine.models import Model
+from rocket.settings import Model
 
 
 class Container(Model):

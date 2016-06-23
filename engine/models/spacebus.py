@@ -2,7 +2,7 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
-from engine.models import Model
+from rocket.settings import Model
 
 
 class Spacebus(Model):
