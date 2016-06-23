@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.orm import validates
 from sqlalchemy_utils import PasswordType
 
-from engine.models import Model
+from rocket.settings import Model
 
 
 class User(Model):
