@@ -1,5 +1,4 @@
 Rocket Project
 ==============
 
-This's a form of simplify contianer management and scheduling
-
+This's a form of simplify container management and scheduling
