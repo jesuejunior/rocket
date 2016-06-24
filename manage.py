@@ -2,7 +2,7 @@
 
 from flask.ext.script import Manager
 
-from rocket.settings import app
+from rocket.settings import app, Metadata
 
 manager = Manager(app)
 
@@ -10,15 +10,14 @@ manager = Manager(app)
 @manager.command
 def create_db():
     """Creates the db tables."""
-    # db.create_all()
     print('create_db')
-    return True
+    Metadata.create_all()
+
 
 @manager.command
 def drop_db():
     """Drops the db tables."""
-    # db.drop_all()
-    pass
+    Metadata.drop_all()
 
 
 @manager.command
