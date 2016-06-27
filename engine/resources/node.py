@@ -9,7 +9,6 @@ from rocket.settings import Session
 from engine.models.node import Node
 from toolbox.flask_headers import add_headers
 
-node = Blueprint('node', __name__)
 # TODO: Remove queries from view/endpoint
 
 
