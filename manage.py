@@ -2,7 +2,8 @@
 
 from flask.ext.script import Manager
 
-from rocket.settings import app, Metadata
+from rocket import app
+from rocket.settings import Metadata
 
 manager = Manager(app)
 
