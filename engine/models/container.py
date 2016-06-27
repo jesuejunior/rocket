@@ -1,16 +1,16 @@
 # encoding: utf-8
-from sqlalchemy import Column, Integer, String
-from sqlalchemy_utils import JSONType
-
-from rocket.settings import Model
+from django.contrib.postgres.fields import JSONField
+from django.db import models
 
 
-class Container(Model):
+class Container(models.Model):
 
     """
+        Container model
     """
-    __tablename__ = 'container'
+    name = models.CharField(max_length=50)
+    config = JSONField()
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(40))
-    config = Column(JSONType)
+    class Meta:
+        db_table = u'container'
+        verbose_name = 'Container'

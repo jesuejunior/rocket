@@ -16,6 +16,10 @@ class Node(models.Model):
     private_key = models.CharField(max_length=200) # It'll change to encrypted field
     ready = models.BooleanField(default=False)
 
+    class Meta:
+        db_table = u'node'
+        verbose_name = 'Node'
+
     @property
     def serialize(self):
         return {

@@ -1,13 +1,16 @@
 # encoding: utf-8
-from sqlalchemy import Column, Integer, ForeignKey
+from django.db import models
 
-from rocket.settings import Model
+from engine.models.container import Container
+from engine.models.spacebus import Spacebus
 
 
-class SpacebusHasContainer(Model):
+class SpacebusHasContainer(models.Model):
 
     """
     """
-    __tablename__ = 'spacebus_has_container'
-    spacebus_id = Column(Integer, ForeignKey('spacebus.id'), primary_key=True)
-    container_id = Column(Integer, ForeignKey('container.id'), primary_key=True)
+    spacebus = models.ForeignKey(Spacebus)
+    container = models.ForeignKey(Container)
+
+    class Meta:
+        db_table = u'spacebus_has_container'

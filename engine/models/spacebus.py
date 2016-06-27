@@ -1,16 +1,16 @@
 # encoding: utf-8
-from sqlalchemy import Column, Integer, String
-from sqlalchemy.orm import relationship
-
-from rocket.settings import Model
+from django.db import models
 
 
-class Spacebus(Model):
-
+class Spacebus(models.Model):
     """
     """
-    __tablename__ = 'spacebus'
-
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(40))
-    container = relationship("Ccontainer", secundary='spacebus_has_container', backref="spacebuses")
+    name = models.CharField(max_length=40)
+    container = models.ManyToManyField('Container',
+                                       related_name='spacebus',
+                                       db_table='spacebus_has_container',
+                                       null=True,
+                                       blank=True)
+    class Meta:
+        db_table = u'spacebus'
+        verbose_name = 'Spacebus'
