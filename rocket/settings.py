@@ -10,7 +10,7 @@ SECRET_KEY = 'Fai8/pT1mbXMO62Papz9IdyznrIBuKBzaC2+5uvdxvaX3r2U8tFz/w=='
 
 DB_USER = os.environ.get('DB_USER', 'rocket')
 DB_PASSWORD = os.environ.get('DB_PASSWORD', 'rocket')
-DB_HOST = os.environ.get('DB_HOST', '192.168.99.100')
+DB_HOST = os.environ.get('DB_HOST', 'localhost')
 DB_PORT = os.environ.get('DB_PORT', 5432)
 DB_NAME = os.environ.get('DB_NAME', 'rocket')
 
@@ -34,3 +34,5 @@ if not database_exists(engine.url):
 Metadata = MetaData(bind=engine)
 Model = declarative_base(metadata=Metadata)
 Session = sessionmaker(bind=engine, expire_on_commit=False)
+
+API_VERSION = 'v1'
