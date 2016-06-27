@@ -1,26 +1,20 @@
 # encoding: utf-8
-from sqlalchemy import Column, Integer, String, Boolean
-from sqlalchemy_utils import IPAddressType, EncryptedType
-
-from rocket.settings import Model, SECRET_KEY
+from django.db import models
 
 
-class Node(Model):
+class Node(models.Model):
 
     """
     """
-    __tablename__ = 'node'
-
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(155), nullable=False)
-    so = Column(String(40))
-    provider = Column(String(40))
-    ip = Column(IPAddressType, unique=True)
-    fqdn = Column(String(50), nullable=True)
-    username = Column(String(155), nullable=False)
-    password = Column(EncryptedType(String, SECRET_KEY), nullable=True)
-    private_key = Column(EncryptedType(String, SECRET_KEY), nullable=True)
-    ready = Column(Boolean, default=False)
+    name = models.CharField(max_length=150)
+    so = models.CharField(max_length=40)
+    provider = models.CharField(max_length=20)
+    ip = models.IPAddressField()
+    fqdn = models.CharField(max_length=50, null=True, blank=True)
+    username = models.CharField(max_length=50)
+    password = models.CharField(max_length=22) # It'll change to encrypted field
+    private_key = models.CharField(max_length=200) # It'll change to encrypted field
+    ready = models.BooleanField(default=False)
 
     @property
     def serialize(self):
@@ -35,7 +29,3 @@ class Node(Model):
             'password': self.password,
             'private_key': self.private_key
         }
-
-    def add(self):
-
-        return True
