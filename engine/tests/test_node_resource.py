@@ -6,9 +6,9 @@ import json
 import pytest
 from alchemytools.context import managed
 
-from engine.models import Metadata, Session
 from engine.models.node import Node
-from rocket.settings import app
+from rocket import app
+from rocket.settings import Metadata, Session
 
 
 @pytest.fixture(scope='class')
@@ -30,6 +30,7 @@ def setUp(request):
 		node = Node(**node1)
 		session.add(node)
 		session.commit()
+	app.run(host='0.0.0.0', port=8000)
 
 	def tearDown():
 		Metadata.drop_all()

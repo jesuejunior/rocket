@@ -1,21 +1,22 @@
 # encoding: utf-8
 from IPy import IP
 from alchemytools.context import managed
-from flask import request, jsonify, make_response
+from flask import request, jsonify, make_response, Blueprint
 from flask_restful import Resource
 from sqlalchemy import exists
 
 from rocket.settings import Session
 from engine.models.node import Node
-from rocket import api_version, api
 from toolbox.flask_headers import add_headers
 
-#TODO: Remove queries from view/endpoint
-@api.resource('/{0}/nodes'.format(api_version), '/{0}/nodes/<int:id>'.format(api_version))
+node = Blueprint('node', __name__)
+# TODO: Remove queries from view/endpoint
+
+
 class NodeResource(Resource):
 	@add_headers({'ok': True})
 	def get(self, id=None):
-		# TODO: Move to queries to model methods
+		# TODO: Move queries to model methods
 		with managed(Session) as session:
 			if id:
 				node = session.query(Node).get(id)
