@@ -1,6 +1,7 @@
 Django==1.9.7
 djangorestframework==3.3.3
 django_filter==0.13.0
+django-cors-headers==1.1.0
 gunicorn==19.4.5
 docker-py==1.8.0
 IPy==0.83
