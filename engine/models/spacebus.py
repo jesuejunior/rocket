@@ -13,6 +13,7 @@ class Spacebus(models.Model):
                                        db_table='spacebus_has_container',
                                        null=True,
                                        blank=True)
+
     def __str__(self):
         return self.name
 
