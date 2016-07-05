@@ -88,5 +88,5 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         db_table = u'user'
-        app_label = 'api'
+        app_label = 'profile'
         verbose_name = u'Usuário'
