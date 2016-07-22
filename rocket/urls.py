@@ -17,8 +17,6 @@ from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.contrib import admin
 
-import engine
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^nodes', include('engine.urls')),
