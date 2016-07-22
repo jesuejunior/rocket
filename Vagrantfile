@@ -10,8 +10,7 @@ Vagrant.configure(2) do |config|
   "en6: Broadcom NetXtreme Gigabit Ethernet Controller",
   ]
   # accessing "localhost:8000" will access port 8000 on the guest machine.
-  config.vm.network "forwarded_port", guest: 2375, host: 2375
-  config.vm.network "forwarded_port", guest: 5000, host: 5000
+  config.vm.network "forwarded_port", guest: 8000, host: 8000
 
   config.vm.synced_folder ".", "/app",  type: "virtualbox"
   config.vm.synced_folder "../", "/code",  type: "virtualbox"
