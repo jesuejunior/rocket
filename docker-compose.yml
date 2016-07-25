@@ -7,6 +7,6 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: rocket
-      POSTGRES_USER: rocket
-      POSTGRES_DB: rocket
+      POSTGRES_USER: everest
+      POSTGRES_PASSWORD: everest
+      POSTGRES_DB: everest
