@@ -2,9 +2,9 @@
 from __future__ import print_function
 
 import json
-
 import pytest
-from engine.models.node import Node
+
+from engine.models import Node
 
 
 @pytest.fixture(scope='class')
@@ -18,12 +18,13 @@ def setUp(request):
 		'username': 'admin',
 		'password': 'abc123'
 	}
-
+	Node.objects.create(**node1)
 	def tearDown():
 		pass
 	request.addfinalizer(tearDown)
 
 
+@pytest.mark.django_db
 def test_create_new_node(setUp, client):
 	data = {
 		'name': 'node_test',
@@ -39,9 +40,10 @@ def test_create_new_node(setUp, client):
 
 	assert 201 == result.status_code
 
+@pytest.mark.django_db
 def test_get_node_by_id(setUp, client):
-	req = client.get('/nodes/1')
-	result = json.loads(req.data).get('data')
+	req = client.get('/nodes/1', headers={'Content-Type': 'application/json'} )
+	result = json.loads(req.data)
 
 	assert 200 == req.status_code
 	assert 1 == result.get('id')
@@ -51,6 +53,7 @@ def test_get_node_by_id(setUp, client):
 	assert 'admin' == result.get('username')
 	assert 'abc123' == result.get('password')
 
+@pytest.mark.django_db
 def test_update_node_ok(setUp, client):
 	data = {
 		'name': 'node100',
@@ -72,6 +75,7 @@ def test_update_node_ok(setUp, client):
 	# assert '201.18.1.100' == str(node.ip)
 	assert True
 
+@pytest.mark.django_db
 def test_delete_node_ok(setUp, client):
 	result = client.delete('/nodes/1', headers={'Content-Type': 'application/json'})
 	assert 204 == result.status_code

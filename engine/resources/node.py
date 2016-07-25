@@ -8,7 +8,7 @@ from engine.models.node import Node
 from engine.serializers.node import NodeSerializer
 
 
-class NodeList(APIView):
+class NodeView(APIView):
     """
     List all nodes, or create a new node.
     """
