@@ -58,10 +58,13 @@ def test_get_node_by_id(setUp, client):
 @pytest.mark.django_db
 def test_update_node_ok(setUp, client):
 	data = {
-		'name': 'node100',
-		'so': 'centos7',
-		'provider': 'rackspace',
-		'ip': '201.18.1.100',
+		'name': 'node1',
+		'so': 'centos',
+		'provider': 'do',
+		'ip': '192.168.1.101',
+		'fqdn': 'node.bar.com',
+		'username': 'admin',
+		'password': 'cba123'
 	}
 
 	req = client.put('/nodes/1', data=json.dumps(data), content_type='application/json', headers={'Content-Type': 'application/json'})

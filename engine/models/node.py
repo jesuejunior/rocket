@@ -4,7 +4,6 @@ from django.db import models
 PROVIDERS = ('aws', 'rackspace', 'vmware', 'digital ocean', 'linode' )
 
 class Node(models.Model):
-
     """
     """
     name = models.CharField(max_length=150)

@@ -4,6 +4,8 @@ from engine.models.node import Node
 
 
 class NodeSerializer(serializers.ModelSerializer):
+    """
+    """
     class Meta:
         model = Node
         fields = ('id', 'name', 'so', 'provider', 'ip',
