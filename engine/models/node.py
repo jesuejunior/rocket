@@ -14,8 +14,8 @@ class Node(models.Model):
     docker_port = models.IntegerField(default=2375)
     fqdn = models.CharField(max_length=50, null=True, blank=True)
     username = models.CharField(max_length=50)
-    password = models.CharField(max_length=22) # It'll change to encrypted field
-    private_key = models.CharField(max_length=200) # It'll change to encrypted field
+    password = models.CharField(max_length=22, null=True, blank=True) # It'll change to encrypted field
+    private_key = models.CharField(max_length=200, null=True, blank=True) # It'll change to encrypted field
     ready = models.BooleanField(default=False)
 
     class Meta:
