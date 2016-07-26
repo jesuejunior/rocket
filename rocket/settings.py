@@ -15,10 +15,10 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-DATABASE_NAME = os.environ.get('DATABASE_NAME', 'rocket')
+DATABASE_NAME = os.environ.get('DATABASE_NAME', 'everest')
 DATABASE_HOST = os.environ.get('DATABASE_HOST', '127.0.0.1')
-DATABASE_USER = os.environ.get('DATABASE_USER', 'rocket')
-DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', 'rocket')
+DATABASE_USER = os.environ.get('DATABASE_USER', 'everest')
+DATABASE_PASSWORD = os.environ.get('DATABASE_PASSWORD', 'everest')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/

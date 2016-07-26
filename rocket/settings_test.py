@@ -7,6 +7,6 @@ DATABASES = {
         'USER': 'everest',
         'PASSWORD': 'everest',
         'HOST': DATABASE_HOST,
-        'PORT': '5432',
+        'PORT': '5433',
     }
 }
