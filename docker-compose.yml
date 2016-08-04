@@ -1,6 +1,6 @@
 version: '2'
 services:
-  db_rocket:
+  db:
     image: postgres:9.5
     expose:
       - 5432
