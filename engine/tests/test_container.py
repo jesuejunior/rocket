@@ -6,6 +6,7 @@ import pytest
 from model_mommy import mommy
 
 from engine.models import Container
+from toolbox.icepick import ordered
 
 
 @pytest.fixture
@@ -16,8 +17,8 @@ def setUp(request):
 		'config': {}
 	}
 
-	mommy.make_one(Container, **container1)
-	mommy.make_many(Container, 9)
+	Container.objects.create(**container1)
+
 	def tearDown():
 		pass
 	request.addfinalizer(tearDown)
@@ -27,19 +28,41 @@ def setUp(request):
 def test_create_new_container(setUp, client):
 	data = {
 		'name': 'container_test',
-		'config': {}
+		'config': {
+			"registry": {
+				"image": "registry:2.4",
+				"environment": [
+					"RACK_ENV=development",
+					"SHOW=true",
+					"DEBUG=False"
+				],
+				"volumes": [
+					"/opt/registry/tmp:/tmp/registry-dev:Z",
+					"/opt/nginx/certs:/certs:Z"
+				],
+				"expose": [
+					5000
+				],
+				"ports": [
+					"5000:5000"
+				]
+			}
+		}
 
 	}
 
 	result = client.post('/containers', data=json.dumps(data), content_type='application/json', headers={'Content-Type': 'application/json'})
 	# TODO: must be assert more things
 	assert 201 == result.status_code
-	assert 'centos' == result.data.get('so')
+
+	result_db = Container.objects.get(name='container_test')
+	assert 'container_test' == result_db.name
+	assert ordered(data.get('config')) == ordered(result_db.config)
 
 @pytest.mark.django_db
 def test_get_container_all(setUp, client):
 	req = client.get('/containers', headers={'Content-Type': 'application/json'} )
-	assert 10 == len(req.data)
+	assert 1 == len(req.data)
 
 @pytest.mark.django_db
 def test_get_container_by_id(setUp, client):

@@ -3,7 +3,7 @@
 
 def ordered(obj):
     """Ordering a dict object
-    :param obj:
+    :param obj: Can be list or dict
     :return obj:
     """
     if isinstance(obj, dict):
