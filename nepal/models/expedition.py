@@ -4,13 +4,13 @@ from django.db import models
 from nepal.models.container import Container
 
 
-class Spacebus(models.Model):
+class Expedition(models.Model):
     """
     """
     name = models.CharField(max_length=40)
     container = models.ManyToManyField(Container,
-                                       related_name='spacebus',
-                                       db_table='spacebus_has_container',
+                                       related_name='expedition',
+                                       db_table='expedition_has_container',
                                        null=True,
                                        blank=True)
 
@@ -18,5 +18,5 @@ class Spacebus(models.Model):
         return self.name
 
     class Meta:
-        db_table = u'spacebus'
-        verbose_name = 'Spacebus'
+        db_table = u'expedition'
+        verbose_name = 'Expedition'
