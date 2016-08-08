@@ -3,7 +3,6 @@ from __future__ import print_function
 
 import json
 import pytest
-from model_mommy import mommy
 
 from nepal.models import Container
 from toolbox.icepick import ordered
@@ -81,7 +80,6 @@ def test_update_container_ok(setUp, client):
 	}
 
 	req = client.put('/containers/1', data=json.dumps(data), content_type='application/json', headers={'Content-Type': 'application/json'})
-	result = req.data
 
 	assert 200 == req.status_code
 
