@@ -2,6 +2,7 @@ version: '2'
 services:
   test_db:
     image: postgres:9.5
+    restart: always
     expose:
       - 5433
     ports:
