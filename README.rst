@@ -3,8 +3,14 @@ Everest Project
 
 This's a form of simplify container management and scheduling
 
-#### Run tests
+Installation
+------------
 
+Usage
+-----
+
+Tests
+-----
 You'll need a postgreSQL database, for it you could be use a docker container.
 
 .. code-block:: shell
