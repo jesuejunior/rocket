@@ -23,5 +23,18 @@ then
 
     $ py.test
 
+Contributing
+------------
+
+Code Status
+-----------
+
+
+LICENSE
+-------
+
+It's released under the BSD-3-Clause_.
+
+.. _BSD-3-Clause: https://opensource.org/licenses/BSD-3-Clause 
 
 # TODO: Improve docs
