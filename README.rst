@@ -35,6 +35,6 @@ LICENSE
 
 It's released under the BSD-3-Clause_.
 
-.. _BSD-3-Clause: https://opensource.org/licenses/BSD-3-Clause 
+.. _BSD-3-Clause: LICENSE 
 
 # TODO: Improve docs
