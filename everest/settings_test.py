@@ -6,7 +6,7 @@ DATABASES = {
         'NAME': 'test_everest',
         'USER': 'everest',
         'PASSWORD': 'everest',
-        'HOST': DATABASE_HOST,
+        'HOST': '127.0.0.1',
         'PORT': '5433',
     }
 }
