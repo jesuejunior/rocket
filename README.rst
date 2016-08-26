@@ -3,6 +3,9 @@ Everest Project
 
 This's a form of simplify container management and scheduling
 
+.. image:: https://travis-ci.com/jesuejunior/everest.svg?token=psptskqMdcVBYJNyCE2p&branch=develop
+    :target: https://travis-ci.com/jesuejunior/everest
+
 Installation
 ------------
 
