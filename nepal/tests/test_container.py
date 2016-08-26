@@ -11,7 +11,7 @@ from toolbox.icepick import ordered
 @pytest.mark.django_db
 class ContainerTest:
     @pytest.fixture(autouse=True)
-    def setUp(request):
+    def setUp(self):
             container1 = {
                     'id': 1,
                     'name': 'container1',
@@ -20,9 +20,9 @@ class ContainerTest:
 
             Container.objects.create(**container1)
 
-            def tearDown():
-                    pass
-            request.addfinalizer(tearDown)
+            # def tearDown():
+                    # pass
+            # request.addfinalizer(tearDown)
 
 
     @pytest.mark.django_db(transaction=True)

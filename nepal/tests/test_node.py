@@ -27,7 +27,7 @@ def setUp(request):
 	request.addfinalizer(tearDown)
 
 
-@pytest.mark.django_db
+@pytest.mark.django_db(transaction=True)
 def test_create_new_node(setUp, client):
 	data = {
 		'name': 'node_test',
