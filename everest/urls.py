@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.contrib import admin
+from rest_framework.authtoken import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^user/token', views.obtain_auth_token),
     url(r'', include('nepal.urls')),
 ]
 
