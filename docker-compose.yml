@@ -1,7 +1,7 @@
 version: '2'
 services:
   db:
-    image: postgres:9.5
+    image: postgres:9.6
     expose:
       - 5432
     ports:
@@ -10,3 +10,15 @@ services:
       POSTGRES_USER: everest
       POSTGRES_PASSWORD: everest
       POSTGRES_DB: everest
+  everest:
+    build: .
+    image: jesuejunior/everest
+    links:
+      - db
+    container_name: everest
+    depends_on:
+      - db
+    environment:
+      DB_NAME: everest
+
+
