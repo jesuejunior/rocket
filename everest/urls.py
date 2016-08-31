@@ -20,6 +20,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('nepal.urls')),
+    url(r'', include('profile.urls')),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

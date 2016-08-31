@@ -7,3 +7,4 @@ docker-py==1.8.0
 IPy==0.83
 psycopg2==2.6.1
 apache-libcloud==1.1.0
+djangorestframework-jwt==1.8.0
