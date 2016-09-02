@@ -1,0 +1,16 @@
+.git
+*.pyc
+*.sqlite3
+.idea
+*.md
+.coverage
+*.log
+test
+*.*.*.test*
+.vagrant
+.cache
+__pycache__
+Vagrantfile
+README.rst
+LICENSE
+docker-compose.yml
