@@ -5,6 +5,7 @@ from nepal.models.node import Node
 
 class NodeSerializer(serializers.ModelSerializer):
     """
+        Node serializer
     """
     class Meta:
         model = Node

@@ -4,12 +4,12 @@ from django.db import models
 from nepal.models.node import Node
 
 class Container(models.Model):
-
     """
         Container model
     """
     name = models.CharField(max_length=50, verbose_name='Naem of container')
-    node = models.ForeignKey(Node, verbose_name='Node host')
+    nodes = models.ManyToManyField(Node, db_table='container_has_node',
+            related_name='containers',verbose_name='Container', blank=True)
     config = JSONField()
 
     class Meta:
