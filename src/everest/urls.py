@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+# flake8: ignore=F403
 from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.contrib import admin

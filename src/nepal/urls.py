@@ -1,4 +1,5 @@
 # encoding: utf-8
+# flake8: ignore=F403
 from django.conf.urls import *
 
 from nepal.resources.container import ContainerDetail, ContainerView
