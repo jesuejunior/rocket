@@ -26,6 +26,8 @@ For a manually test, you could see Makefile to get step-by-step
 Contributing
 ------------
 
+See the guide about  `CONTRIBUTING <CONTRIBUTING.rst>`_ with Everest project.
+
 Code Status
 -----------
 
