@@ -5,19 +5,24 @@ Topics
 ------
 
 * `Coding Style`_
-* Quick Contribution Tips and Guidelines
-* Design and Cleanup Proposals
-* Reporting Issues
+* `Quick Contribution Tips and Guidelines`_
+* `Design and Cleanup Proposals`_
+* `Reporting Issues`_
+
+.. _reporting-issue:
 
 Reporting Issues
 ----------------
 
-bbbb
+A great way to contribute to the project is to send a detailed report when you encounter an issue.
+I always appreciate a well-written, thorough bug report, and will thank you for it!
+
+.. _quick-contribution-tips-and-guidelines:
 
 Quick Contribution Tips and Guidelines
 --------------------------------------
 
-bbbb
+This section gives the experienced contributor some tips and guidelines.
 
 Pull requests are always welcome
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -37,14 +42,37 @@ Merge approval
 
 Everest maintainers use (:+1:) :+1 emoji in comments on the code review to indicate acceptance.
 
+.. _design-and-cleanup-proposals:
+
 Design and Cleanup Proposals
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-dddd
+You can propose new designs for existing everest's features. You can also refactor entirely new features. 
+I really appreciate contributors who want to refactor or otherwise cleanup our project.
+
+I try hard to keep Everest's lean and focused. Everest's can't do everything for everybody. 
+This means that we might decide against incorporating a new feature. 
+However, there might be a way to implement that feature on top of Everest's app.
 
 .. _coding-style:
 
 Coding Style
 ------------
 
-PEP8
+See `PEP8 Docs <https://www.python.org/dev/peps/pep-0008/>`_
+
+*Except for limit all lines to a maximum of 79 characters.*
+
+It can be to maximum of 100 characters.
+
+You must do a check code style with command.
+
+.. code-block:: C
+  make check
+
+or 
+
+.. code-block:: C
+  make test
+
+All of them will execute pep8 checker and pyflakes.
