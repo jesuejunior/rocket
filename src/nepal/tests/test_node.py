@@ -17,7 +17,7 @@ class NodeTest:
         self.user = User.objects.create_user(email='test@adm.cc', password='test123')
         self.headers = {'Content-Type': 'application/json'}
         response = self.client.post('/users/login', headers=self.headers,
-            data={'email': 'test@adm.cc', 'password': 'test123'})
+                                    data={'email': 'test@adm.cc', 'password': 'test123'})
 
         token = response.data.get('token')
         # self.auth = {'Authorization': 'JWT {0}'.format(token)}
@@ -53,7 +53,7 @@ class NodeTest:
         }
 
         response = self.client.post('/nodes', data=json.dumps(data),
-                content_type='application/json', **self.headers)
+                                    content_type='application/json', **self.headers)
         # TODO: must be assert more things
         assert 201 == response.status_code
         assert 'centos' == response.data.get('so')
@@ -90,7 +90,7 @@ class NodeTest:
         }
 
         req = self.client.put('/nodes/100', data=json.dumps(data),
-                content_type='application/json', **self.headers)
+                              content_type='application/json', **self.headers)
         result = req.data
 
         assert 200 == req.status_code
@@ -102,7 +102,7 @@ class NodeTest:
     @pytest.mark.django_db(transaction=True)
     def test_try_update_node_not_found(self):
         response = self.client.put('/nodes/132', data=json.dumps({}),
-                content_type='application/json', **self.headers)
+                                   content_type='application/json', **self.headers)
         assert 404 == response.status_code
 
     @pytest.mark.django_db(transaction=True)

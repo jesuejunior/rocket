@@ -1,9 +1,10 @@
 # encoding: utf-8
-__author__ = 'jesuejunior'
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser, PermissionsMixin)
+
+__author__ = 'jesuejunior'
 
 
 class UserManager(BaseUserManager):
@@ -19,7 +20,7 @@ class UserManager(BaseUserManager):
         user = self.model(
             email=self.normalize_email(email),
             is_active=is_active,
-            )
+        )
 
         user.set_password(password)
         user.save(using=self._db)
@@ -30,7 +31,7 @@ class UserManager(BaseUserManager):
         Creates and saves a superuser with the given email, date of
         birth and password.
         """
-        user = self.create_user(email=email,  password=password)
+        user = self.create_user(email=email, password=password)
         user.is_admin = True
         user.save(using=self._db)
         return user

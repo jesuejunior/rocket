@@ -18,10 +18,10 @@ class ContainerTest:
         self.client = client
         self.user = User.objects.create_user(email='test@evt.com', password='test123')
         response = self.client.post('/users/login', data={'email': 'test@evt.com',
-            'password': 'test123'})
+                                    'password': 'test123'})
         token = response.data.get('token')
         self.headers = {'HTTP_AUTHORIZATION': 'JWT {0}'.format(token)}
-       
+
         node1 = {
             'name': 'node1',
             'so': 'centos',
@@ -67,32 +67,31 @@ class ContainerTest:
         }
 
         result = self.client.post('/containers', data=json.dumps(data),
-                content_type='application/json', **self.headers)
+                                  content_type='application/json', **self.headers)
         # TODO: must be assert more things
         assert 201 == result.status_code
 
         result_db = Container.objects.get(name='container_test')
         assert 'container_test' == result_db.name
         assert ordered(data.get('config')) == ordered(result_db.config)
-    
+
     @pytest.mark.xfail
     @pytest.mark.django_db(transaction=True)
     def test_start_a_container(self):
         response = self.client.get('/conteiners/1/?action=start',
-                content_type='application/json', **self.headers)
+                                   content_type='application/json', **self.headers)
         assert {} == response.data
 
     @pytest.mark.django_db(transaction=True)
     def test_get_container_all(self):
         response = self.client.get('/containers',
-                content_type='application/json', **self.headers)
+                                   content_type='application/json', **self.headers)
         assert 1 == len(response.data)
 
     @pytest.mark.django_db(transaction=True)
     def test_get_container_by_id(self):
-        response = self.client.get('/containers/100',
-                content_type='application/json',
-                **self.headers)
+        response = self.client.get('/containers/100', content_type='application/json',
+                                   **self.headers)
         result = response.data
 
         assert 200 == response.status_code
@@ -122,24 +121,24 @@ class ContainerTest:
         }
 
         response = self.client.put('/containers/100', data=json.dumps(data),
-                content_type='application/json', **self.headers)
+                                   content_type='application/json', **self.headers)
 
         assert 200 == response.status_code
 
     @pytest.mark.django_db(transaction=True)
     def test_try_update_container_not_found(self):
         response = self.client.put('/containers/132', data=json.dumps({}),
-                content_type='application/json', **self.headers)
+                                   content_type='application/json', **self.headers)
         assert 404 == response.status_code
 
     @pytest.mark.django_db(transaction=True)
     def test_delete_container_ok(self):
         response = self.client.delete('/containers/100', content_type='application/json',
-                **self.headers)
+                                      **self.headers)
         assert 204 == response.status_code
 
     @pytest.mark.django_db(transaction=True)
     def test_try_delete_container_that_not_exist(self):
         response = self.client.delete('/containers/122', content_type='application/json',
-                **self.headers)
+                                      **self.headers)
         assert 404 == response.status_code

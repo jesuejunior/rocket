@@ -20,6 +20,7 @@ class UserToken(APIView):
         token, created = Token.objects.get_or_create(user=user)
         return Response({'token': token.key})
 
+
 class UserLogout(APIView):
     throttle_classes = ()
     permission_classes = ()
