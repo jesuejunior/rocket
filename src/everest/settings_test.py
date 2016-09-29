@@ -1,6 +1,5 @@
 # encoding: utf-8
-# flake8: ignore=F403
-
+# flake8: noqa
 from everest.settings import *
 
 DATABASES = {
