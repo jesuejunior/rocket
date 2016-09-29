@@ -32,10 +32,10 @@ class ContainerTest:
         }
         self.node = Node.objects.create(**node1)
         container1 = {
-                    'id': 100,
-                    'name': 'container1',
-                    'config': {}
-            }
+            'id': 100,
+            'name': 'container1',
+            'config': {}
+        }
         self.container = Container.objects.create(**container1)
         self.container.nodes.add(self.node)
 
@@ -44,13 +44,13 @@ class ContainerTest:
         data = {
             'name': 'container_test',
             'nodes': [self.node.id],
-            'config': {       
+            'config': {
                 "registry": {
-                "image": "registry:2.4",
-                "environment": [
-                    "RACK_ENV=development",
-                    "SHOW=true",
-                    "DEBUG=False"
+                    "image": "registry:2.4",
+                    "environment": [
+                        "RACK_ENV=development",
+                        "SHOW=true",
+                        "DEBUG=False"
                     ],
                     "volumes": [
                         "/opt/registry/tmp:/tmp/registry-dev:Z",
@@ -85,13 +85,14 @@ class ContainerTest:
     @pytest.mark.django_db(transaction=True)
     def test_get_container_all(self):
         response = self.client.get('/containers',
-                content_type='application/json', **self.headers )
+                content_type='application/json', **self.headers)
         assert 1 == len(response.data)
 
     @pytest.mark.django_db(transaction=True)
     def test_get_container_by_id(self):
-        response = self.client.get('/containers/100', content_type='application/json',
-                **self.headers )
+        response = self.client.get('/containers/100',
+                content_type='application/json',
+                **self.headers)
         result = response.data
 
         assert 200 == response.status_code
@@ -102,13 +103,13 @@ class ContainerTest:
         data = {
             'name': 'app1',
             'nodes': [self.node.id],
-            'config': {       
+            'config': {
                 "registry": {
-                "image": "registry:2.4",
-                "environment": [
-                    "RACK_ENV=development",
-                    "SHOW=true",
-                    "DEBUG=False"
+                    "image": "registry:2.4",
+                    "environment": [
+                        "RACK_ENV=development",
+                        "SHOW=true",
+                        "DEBUG=False"
                     ],
                     "expose": [
                         5000
@@ -139,7 +140,6 @@ class ContainerTest:
 
     @pytest.mark.django_db(transaction=True)
     def test_try_delete_container_that_not_exist(self):
-        response = self.client.delete('/containers/122',content_type='application/json',
+        response = self.client.delete('/containers/122', content_type='application/json',
                 **self.headers)
         assert 404 == response.status_code
-

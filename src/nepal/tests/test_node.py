@@ -15,13 +15,13 @@ class NodeTest:
     def setUp(self, client):
         self.client = client
         self.user = User.objects.create_user(email='test@adm.cc', password='test123')
-        self.headers={'Content-Type': 'application/json'}
-        response = self.client.post('/users/login',  headers=self.headers,
+        self.headers = {'Content-Type': 'application/json'}
+        response = self.client.post('/users/login', headers=self.headers,
             data={'email': 'test@adm.cc', 'password': 'test123'})
 
         token = response.data.get('token')
         # self.auth = {'Authorization': 'JWT {0}'.format(token)}
-        self.headers.update( {'HTTP_AUTHORIZATION': 'JWT {0}'.format(token)})
+        self.headers.update({'HTTP_AUTHORIZATION': 'JWT {0}'.format(token)})
         node1 = {
             'id': 100,
             'name': 'node1',
@@ -60,13 +60,13 @@ class NodeTest:
 
     @pytest.mark.django_db(transaction=True)
     def test_get_node_all(self):
-        response = self.client.get('/nodes', **self.headers )
+        response = self.client.get('/nodes', **self.headers)
         assert 200 == response.status_code
         assert 10 == len(response.data)
 
     @pytest.mark.django_db(transaction=True)
     def test_get_node_by_id(self):
-        response = self.client.get('/nodes/100', **self.headers )
+        response = self.client.get('/nodes/100', **self.headers)
         result = response.data
 
         assert 200 == response.status_code
@@ -102,7 +102,7 @@ class NodeTest:
     @pytest.mark.django_db(transaction=True)
     def test_try_update_node_not_found(self):
         response = self.client.put('/nodes/132', data=json.dumps({}),
-                content_type='application/json',  **self.headers)
+                content_type='application/json', **self.headers)
         assert 404 == response.status_code
 
     @pytest.mark.django_db(transaction=True)

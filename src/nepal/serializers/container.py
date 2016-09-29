@@ -23,9 +23,8 @@ class ContainerSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         nodes_data = validated_data.pop('nodes')
         instance.name = validated_data.get('name', instance.name)
-        # TODO: Maybe it's a problem 
+        # TODO: Maybe it's a problem
         instance.config = validated_data.get('config', instance.config)
         instance.nodes.set(nodes_data, bulk=True)
         instance.save()
         return instance
-
