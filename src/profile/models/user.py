@@ -8,6 +8,9 @@ __author__ = 'jesuejunior'
 
 
 class UserManager(BaseUserManager):
+    """
+    User manager
+    """
     def create_user(self, email, is_active=True, password=None):
         """
         email: email address
@@ -38,7 +41,10 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-
+    """
+    User model
+    see attributtes
+    """
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True, )
