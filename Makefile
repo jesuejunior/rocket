@@ -4,7 +4,7 @@ test:
 	@docker-compose -f docker-compose-test.yml up -d
 	@echo "Waiting database stay ready"
 	@sleep 5
-	@py.test src/ --create-db --flakes
+	@py.test src/ --create-db --flakes --pep8
 
 dev:
 	@pip install --upgrade pip
