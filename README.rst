@@ -9,8 +9,18 @@ This's a form of simplify container management and scheduling
 Installation
 ------------
 
-Usage
+Developing
 -----
+
+Requirements
+    * python 3.5
+    * postgres 9.6 or on docker
+    * docker 1.12(optional)
+    * docker-compose(optional)
+
+Create your virtualenv
+
+Install requirements_dev.txt
 
 Tests
 -----
