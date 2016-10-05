@@ -10,5 +10,4 @@ class NodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Node
         fields = ('id', 'name', 'so', 'provider', 'ip',
-                  'docker_port', 'fqdn', 'username', 'password',
-                  'private_key', 'ready')
+                  'docker_port', 'fqdn', 'ready')

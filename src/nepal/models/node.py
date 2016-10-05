@@ -13,9 +13,6 @@ class Node(models.Model):
     ip = models.GenericIPAddressField()
     docker_port = models.IntegerField(default=2375)
     fqdn = models.CharField(max_length=50, null=True, blank=True)
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=22, null=True, blank=True)  # It'll be move
-    private_key = models.CharField(max_length=200, null=True, blank=True)  # It'll be move
     ready = models.BooleanField(default=False)
 
     class Meta:
