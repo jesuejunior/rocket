@@ -1,4 +1,5 @@
 # encoding: utf-8
+import simplejson as json
 from django.http import Http404
 from rest_framework import status
 from rest_framework.response import Response
@@ -13,6 +14,10 @@ class NodeView(APIView):
     List all nodes, or create a new node.
     """
     def get(self, request, format=None):
+        action = self.request.query_params.get('action', None)
+        if action == 'count':
+            nodes = Node.objects.count()
+            return Response({'result': nodes})
         nodes = Node.objects.all()
         serializer = NodeSerializer(nodes, many=True)
         return Response(serializer.data)

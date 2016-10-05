@@ -1,6 +1,6 @@
 # encoding: utf-8
 from __future__ import print_function
-
+import logging
 import json
 import pytest
 from model_mommy import mommy
@@ -114,3 +114,10 @@ class NodeTest:
     def test_try_delete_node_that_not_exist(self):
         result = self.client.delete('/nodes/122', **self.headers)
         assert 404 == result.status_code
+
+    @pytest.mark.django_db(transaction=True)
+    def test_get_count_nodes(self):
+        result = self.client.get('/nodes?action=count', content_type='application/json',
+                                 **self.headers)
+        assert 200 == result.status_code
+        assert 10 == result.data.get('result')
