@@ -26,9 +26,7 @@ class ContainerTest:
             'name': 'node1',
             'so': 'centos',
             'provider': 'do',
-            'ip': '104.10.232.13',
-            'username': 'root',
-            'password': 'root123'
+            'ip': '104.10.232.13'
         }
         self.node = Node.objects.create(**node1)
         container1 = {

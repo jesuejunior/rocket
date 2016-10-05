@@ -28,8 +28,6 @@ class NodeTest:
             'so': 'ubuntu',
             'provider': 'vmware',
             'ip': '192.168.1.250',
-            'username': 'admin',
-            'password': 'abc123'
         }
 
         mommy.make_one(Node, **node1)
@@ -48,8 +46,6 @@ class NodeTest:
             'provider': 'aws',
             'ip': '192.168.1.100',
             'fqdn': 'node.foo.com',
-            'username': 'admin2',
-            'password': 'abc1234'
         }
 
         response = self.client.post('/nodes', data=json.dumps(data),
@@ -74,8 +70,6 @@ class NodeTest:
         assert 'node1' == result.get('name')
         assert 'vmware' == result.get('provider')
         assert '192.168.1.250' == result.get('ip')
-        assert 'admin' == result.get('username')
-        assert 'abc123' == result.get('password')
 
     @pytest.mark.django_db(transaction=True)
     def test_update_node_ok(self):
@@ -84,9 +78,7 @@ class NodeTest:
             'so': 'centos7',
             'provider': 'do',
             'ip': '201.18.1.100',
-            'fqdn': 'node.bar.com',
-            'username': 'admin',
-            'password': 'cba123'
+            'fqdn': 'node.bar.com'
         }
 
         req = self.client.put('/nodes/100', data=json.dumps(data),
