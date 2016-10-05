@@ -13,6 +13,10 @@ class ContainerView(APIView):
     List all containers, or create a new container.
     """
     def get(self, request, format=None):
+        action = self.request.query_params.get('action')
+        if action == 'count':
+            containers = Container.objects.count()
+            return Response({'result': containers})
         containers = Container.objects.all()
         serializer = ContainerSerializer(containers, many=True)
         return Response(serializer.data)

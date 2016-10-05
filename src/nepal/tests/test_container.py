@@ -142,3 +142,10 @@ class ContainerTest:
         response = self.client.delete('/containers/122', content_type='application/json',
                                       **self.headers)
         assert 404 == response.status_code
+
+    @pytest.mark.django_db(transaction=True)
+    def test_get_count_nodes(self):
+        result = self.client.get('/containers?action=count', content_type='application/json',
+                                 **self.headers)
+        assert 200 == result.status_code
+        assert 1 == result.data.get('result')
